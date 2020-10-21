@@ -27,8 +27,11 @@ export default class Server{
         console.log("Escucahando conexiones");
         this.io.on("connection", cliente => {
             console.log("Cliente conectado");
+            //asdasd
+            socket.mensaje(cliente, this.io);
             //desconectar
             socket.deconectar(cliente);
+
         });
     }
 
