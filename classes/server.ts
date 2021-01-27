@@ -26,11 +26,13 @@ export default class Server{
     private escicharSockets(){
         console.log("Escucahando conexiones");
         this.io.on("connection", cliente => {
-            console.log("Cliente conectado");
+            socket.conectarCliente(cliente)
             //asdasd
             socket.mensaje(cliente, this.io);
             //desconectar
             socket.deconectar(cliente);
+            //loginWS
+            socket.configUsuario(cliente, this.io);
 
         });
     }
