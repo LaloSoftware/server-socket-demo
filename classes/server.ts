@@ -16,24 +16,25 @@ export default class Server{
         this.port = SERVER_PORT;
         this.httpServer = new http.Server(this.app);
         this.io = socketIO(this.httpServer);
-        this.escicharSockets();
+        this.escucharSockets();
     }
 
     public static get instace() {
         return this._instance || (this._instance = new this());
     }
 
-    private escicharSockets(){
+    private escucharSockets(){
         console.log("Escucahando conexiones");
         this.io.on("connection", cliente => {
-            socket.conectarCliente(cliente)
+            socket.conectarCliente(cliente, this.io)
             //asdasd
             socket.mensaje(cliente, this.io);
             //desconectar
-            socket.deconectar(cliente);
+            socket.deconectar(cliente, this.io);
             //loginWS
             socket.configUsuario(cliente, this.io);
-
+            //escuchar obtener usuarios activos
+            socket.obtenerUsuarios(cliente, this.io);
         });
     }
 

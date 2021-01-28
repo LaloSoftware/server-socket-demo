@@ -16,7 +16,7 @@ export class UsuariosLista{
     }
 
     public obtenerLista(){
-        return this.lista;
+        return this.lista.filter(usuario => usuario.nombre !== '');
     }
 
     public obtenerUsuario(id: string){
